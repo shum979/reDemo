@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFlows>
+    <DataSources>
+        <DataSource dataSourceType="fileType" name="source_file">
+            <File>
+                <FolderLocation>../jobs/sample_recon_job/data/lhs</FolderLocation>
+                <FileName>data_source_1.csv</FileName>
+                <Delimiter>,</Delimiter>
+                <Header>true</Header>
+            </File>
+        </DataSource>
+        <DataSource dataSourceType="fileType" name="target_file">
+            <File>
+                <FolderLocation>../jobs/sample_recon_job/data/rhs</FolderLocation>
+                <FileName>data_source_1.csv</FileName>
+                <Delimiter>,</Delimiter>
+                <Header>true</Header>
+            </File>
+        </DataSource>
+    </DataSources>
+    <DataFlow id="Source_Ingest">
+        <Flow id="IngestFeed" action="Read">
+            <Read applyondataref="source_file" name="read001"/>
+        </Flow>
+
+        <Flow id="IngestFeed" action="Read">
+            <Read applyondataref="target_file" name="read002"/>
+        </Flow>
+
+        <Flow id="ReconciliationFlow" action="Reconcile">
+            <Reconciliation name="ReconFlow">
+                <Source>read001</Source>
+                <Target>read002</Target>
+                <MatchingKeys>
+                    <Key>
+                        <Source>Firm_ROE_ID</Source>
+                        <Target>firm_ROE_ID</Target>
+                    </Key>
+                </MatchingKeys>
+                <ColumnsToCompare>
+
+                    <NumericKeys>
+                        <Key>
+                            <Source>Shares_Quantity</Source>
+                            <Target>shares_Quantity</Target>
+                        </Key>
+                    </NumericKeys>
+                    <TextKeys>
+                        <Key>
+                            <Source>Order_Event_Type_code</Source>
+                            <Target>order_Event_Type_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>
+                                Firm_ROE_ID
+                            </Source>
+                            <Target>firm_ROE_ID</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Order_ReceivingFirm_MPID_</Source>
+                            <Target>order_Receiving_Firm_MPID</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Order_Receiving_Firm_Order_Received_Date_</Source>
+                            <Target>order_Receiving_Firm_Order_Received_Date</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Order_Receiving_Firm_Order_ID_</Source>
+                            <Target>order_Receiving_Firm_Order_ID</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Order_Received_Timestamp_</Source>
+                            <Target>order_Received_Timestamp</Target>
+                        </Key>
+                        <Key>
+                            <Source>Issue_Symbol_ID</Source>
+                            <Target>issue_Symbol_ID</Target>
+                        </Key>
+                        <Key>
+                            <Source>Buy_Sell_Code</Source>
+                            <Target>buy_Sell_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>Limit_Price</Source>
+                            <Target>limit_Price</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Time_in_Force_Code_</Source>
+                            <Target>time_in_Force_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>Expiration_Date</Source>
+                            <Target>expiration_Date</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Trading_Session_Code_</Source>
+                            <Target>trading_Session_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Account_Type_Code_</Source>
+                            <Target>account_Type_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Program_Trading_Code_</Source>
+                            <Target>program_Trading_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>Arbitrage_Code</Source>
+                            <Target>arbitrage_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Sent_To_Routed_Order_ID_</Source>
+                            <Target>sent_to_Routed_Order_ID</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Sent_to_Firm_MPID_</Source>
+                            <Target>sent_to_Firm_MPID</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Order_Sent_Timestamp_</Source>
+                            <Target>order_Sent_Timestamp</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Routed_Shares_Quantity_</Source>
+                            <Target>routed_Shares_Quantity</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Destination_Code_</Source>
+                            <Target>destination_Code</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Routed_Order_Type_Indicator_</Source>
+                            <Target>routed_Order_Type_Indicator</Target>
+                        </Key>
+                        <Key>
+                            <Source>Route_Price</Source>
+                            <Target>route_Price</Target>
+                        </Key>
+                        <Key>
+                            <Source>_Order_Origination_Code_</Source>
+                            <Target>order_Origination_Code</Target>
+                        </Key>
+                    </TextKeys>
+                </ColumnsToCompare>
+            </Reconciliation>
+        </Flow>
+    </DataFlow>
+</DataFlows>

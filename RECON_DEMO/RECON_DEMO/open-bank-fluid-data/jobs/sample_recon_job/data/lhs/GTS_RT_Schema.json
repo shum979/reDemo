@@ -1,0 +1,22 @@
+{
+  "title" : "GTS_RT_Schema",
+  "comment" : "GTS_RT_Schema",
+  "fields" : [
+    {"name" : "order_event_type_cd" , "type" : "string"},
+    {"name" : "order_rcvg_firm_mpid" , "type" : "int"},
+    {"name" : "order_rcvg_firm_ordrcvd_date" , "type" : "string"},
+    {"name" : "order_rcvg_firm_order_id" , "type" : "int"},
+    {"name" : "firm_roe_id" , "type" : "string"},
+    {"name" : "source_system" , "type" : "string"},
+    {"name" : "Sent_to_Firm_MPID" , "type" : "int"},
+    {"name" : "Routed_Order_ID" , "type" : "string"},
+    {"name" : "Issue_Symbol_ID" , "type" : "string"},
+    {"name" : "Order_Sent_Timestamp" , "type" : "string"},
+    {"name" : "Routed_Method_Code" , "type" : "string"},
+    {"name" : "Destination_Code" , "type" : "string"},
+    {"name" : "Routed_Order_Type_Indicator" , "type" : "string"},
+    {"name" : "Routed_Price" , "type" : "int"},
+    {"name" : "ISO_Indicator" , "type" : "string"},
+    {"name" : "Exchange_Participant_ID" , "type" : "string"}
+  ]
+}

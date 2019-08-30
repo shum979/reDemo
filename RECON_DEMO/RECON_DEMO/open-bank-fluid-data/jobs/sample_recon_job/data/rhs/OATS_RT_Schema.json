@@ -1,0 +1,28 @@
+{
+  "title" : "GTS_RT_Schema",
+  "comment" : "GTS_RT_Schema",
+  "fields" : [
+    {"name" : "Order_rcvg_firm_mpid" , "type" : "int"},
+    {"name" : "Order_event_type_cd" , "type" : "string"},
+    {"name" : "Action_type_cd" , "type" : "string"},
+    {"name" : "Firm_roe_id" , "type" : "string"},
+    {"name" : "Source_system" , "type" : "string"},
+    {"name" : "Order_rcvg_firm_ordrcvd_date" , "type" : "string"},
+    {"name" : "CurrencyCode" , "type" : "string"},
+    {"name" : "Order_rcvg_firm_order_id" , "type" : "int"},
+    {"name" : "Cancelled_by_flag" , "type" : "string"},
+    {"name" : "Cancelled_by_flag_countagg" , "type" : "string"},
+    {"name" : "Sent_to_firm_mpid" , "type" : "int"},
+    {"name" : "Routed_order_id" , "type" : "string"},
+    {"name" : "Issue_symbol_id" , "type" : "string"},
+    {"name" : "Order_sent_tmstp" , "type" : "string"},
+    {"name" : "Routed_shares_quantity" , "type" : "int"},
+    {"name" : "Routing_method_cd" , "type" : "string"},
+    {"name" : "Destination_cd" , "type" : "string"},
+    {"name" : "Routed_order_type_ind" , "type" : "string"},
+    {"name" : "Route_price" , "type" : "int"},
+    {"name" : "Iso_ind" , "type" : "string"},
+    {"name" : "Exchange_participant_id" , "type" : "string"},
+    {"name" : "Data_source" , "type" : "string"}
+  ]
+}

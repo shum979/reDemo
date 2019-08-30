@@ -1,0 +1,19 @@
+{
+  "title" : "GTS_CL_Schema",
+  "comment" : "GTS_CL_Schema",
+  "fields" : [
+    {"name" : "order_event_type_cd" , "type" : "string"},
+    {"name" : "order_rcvg_firm_mpid" , "type" : "int"},
+    {"name" : "order_rcvg_firm_ordrcvd_date" , "type" : "string"},
+    {"name" : "order_rcvg_firm_order_id" , "type" : "int"},
+    {"name" : "firm_roe_id" , "type" : "string"},
+    {"name" : "source_system" , "type" : "string"},
+    {"name" : "Action_type_code" , "type" : "string"},
+    {"name" : "Issue_Sysmbol_id" , "type" : "string"},
+    {"name" : "Order_Cancel_Timestamp" , "type" : "string"},
+    {"name" : "Cancel_Type_Flag" , "type" : "string"},
+    {"name" : "Cancel_Quantity" , "type" : "int"},
+    {"name" : "Cancel_Leaves_Quantity" , "type" : "int"},
+    {"name" : "Cancelled_By_Flag" , "type" : "string"}
+  ]
+}

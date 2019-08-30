@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFlows>
+<DataSources>
+<DataSource dataSourceType="fileType" name="GTS_CL_Dataset">
+<File type="csv">
+<FolderLocation>C:\Users\shimalik\Desktop\DEMO_Sprint5\Demo-Sprint5\Data</FolderLocation>
+<FileName>GTS_CL.csv</FileName>
+<Delimiter>,</Delimiter>
+<Header>true</Header>
+</File>
+</DataSource>
+<DataSource dataSourceType="fileType" name="OATS_CL_Dataset">
+<File type="csv">
+<FolderLocation>C:\Users\shimalik\Desktop\DEMO_Sprint5\Demo-Sprint5\Data</FolderLocation>
+<FileName>OATS_CL.csv</FileName>
+<Delimiter>,</Delimiter>
+<Header>true</Header>
+</File>
+</DataSource>
+</DataSources>
+<DataFlow id="Source_Ingest">
+<Flow id="IngestFeed" action="Read">
+<Read applyondataref="GTS_CL_Dataset" name="GTS_CL_Dataset"/>
+</Flow>
+<Flow id="IngestFeed" action="Read">
+<Read applyondataref="OATS_CL_Dataset" name="OATS_CL_Dataset"/>
+</Flow>
+<Flow id="Transform-feed" action="Transform">
+<Transformations>
+<Transformation type="ExpressionTransformation" name="GTS_CL_Transformed_Dataset" applyondataref="GTS_CL_Dataset">
+<Expression>
+<ColumnExpression>
+<Column name="SourceSystem" expr="${source_system}.concat(&quot;_Trade&quot;)" isNew="true" dType="String"/>
+</ColumnExpression>
+</Expression>
+</Transformation>
+</Transformations>
+</Flow>
+<Flow id="Reconcile-feed" action="Reconcile">
+<Reconciliation name="CL_Recon">
+<Source prefix="GTS_">GTS_CL_Transformed_Dataset</Source>
+<Target prefix="OATS_">OATS_CL_Dataset</Target>
+<ReconKeySet>
+<MatchingKeys>
+<Key>
+<Source>order_event_type_cd</Source>
+<Target>Order_event_type_cd</Target>
+</Key>
+<Key>
+<Source>order_rcvg_firm_mpid</Source>
+<Target>Order_rcvg_firm_mpid</Target>
+</Key>
+<Key>
+<Source>firm_roe_id</Source>
+<Target>Firm_roe_id</Target>
+</Key>
+<Key>
+<Source>order_rcvg_firm_ordrcvd_date</Source>
+<Target>Order_rcvg_firm_ordrcvd_date</Target>
+</Key>
+</MatchingKeys>
+<ColumnsToCompare>
+<DateKeys>
+<Key>
+<Source dateFormat="MM/dd/yyyy HH:mm:ss">Order_Cancel_Timestamp</Source>
+<Target dateFormat="MM/dd/yyyy HH:mm:ss">Order_cancel_tmstp</Target>
+</Key>
+</DateKeys>
+<NumericKeys>
+<Key>
+<Source>order_rcvg_firm_order_id</Source>
+<Target>Order_rcvg_firm_order_id</Target>
+</Key>
+<Key>
+<Source>Cancel_Quantity</Source>
+<Target>Cancel_qty</Target>
+</Key>
+</NumericKeys>
+<TextKeys>
+<Key>
+<Source>Action_type_code</Source>
+<Target>Action_type_cd</Target>
+</Key>
+<Key>
+<Source>Issue_Sysmbol_id</Source>
+<Target>Issue_symbol_id</Target>
+</Key>
+<Key>
+<Source>Cancel_Type_Flag</Source>
+<Target>Cancel_type_flag</Target>
+</Key>
+<Key>
+<Source>Cancelled_By_Flag</Source>
+<Target>Cancelled_by_flag</Target>
+</Key>
+</TextKeys>
+</ColumnsToCompare>
+</ReconKeySet>
+<Deduplication side="source">
+<Strategy column="order_rcvg_firm_mpid">MAX</Strategy>
+</Deduplication>
+<Deduplication side="target">
+<Strategy column="Order_rcvg_firm_mpid">MAX</Strategy>
+</Deduplication>
+<Export>
+<Parquet>
+<FileLocation>D:\\Demo\\Demo-Sprint5\\Export\\Recon_Report</FileLocation>
+<Mode>overwrite</Mode>
+</Parquet>
+</Export>
+</Reconciliation>
+</Flow>
+</DataFlow>
+</DataFlows>
